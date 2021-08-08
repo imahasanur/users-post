@@ -2,21 +2,26 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import './App.css';
+import firebase from "firebase/app";
 import AddPost from "./components/AddPost/AddPost";
 import DeletePost from "./components/DeletePost/DeletePost";
 import Home from './components/Home/Home';
-import NavBar from "./components/NavBar/NavBar";
 import PostDetail from "./components/PostDetail/PostDetail";
+import firebaseConfig from './firebase/firebase.config';
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}else {
+  firebase.app(); 
+}
 
 function App() {
   return (
     <div>
       <Router>
-        
         <Switch>
           <Route path="/addPost">
             <AddPost></AddPost>
