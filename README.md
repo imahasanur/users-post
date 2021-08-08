@@ -1,12 +1,12 @@
 # user posts web application
 
-This project is hosted at [user post web app](https://users-post.web.app/).
+This project live site link [user post web app](https://users-post.web.app/).
 
 ## Used Technology
 
 Front End:
  -> html5, css3, bootstrap5
- -> react, react redux, redux thunk, axios, react router dom, react hook form, Restful Api[jsonplaceholder](https://jsonplaceholder.typicode.com/posts)
+ -> react, react redux, redux thunk, axios, react router dom, react hook form, Restful Api [jsonplaceholder](https://jsonplaceholder.typicode.com/posts)
 
 Deployed to: Github, Firebase
 
