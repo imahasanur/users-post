@@ -4,19 +4,19 @@ export const FETCH_POST_REQUEST = 'FETCH_POST_REQUEST';
 export const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS';
 export const FETCH_POST_FAIL = 'FETCH_POST_FAIL';
 
-export const fetchPostRequest = () => {
+export const fetchPostApiRequest = () => {
     return {
         type: FETCH_POST_REQUEST
     }
 }
 
-export const fetchPostSuccess = (post) =>{
+export const fetchPostApiSuccess = (post) =>{
     return {
         type: FETCH_POST_SUCCESS,
         payload:post
     }
 }
-export const fetchPostFail = (err) =>{
+export const fetchPostApiFail = (err) =>{
     return {
         type: FETCH_POST_FAIL,
         payload:err
@@ -24,17 +24,17 @@ export const fetchPostFail = (err) =>{
 }
 export const fetchPostApi = (post) => {
     return (dispatch) => {
-        dispatch(fetchPostRequest)
+        dispatch(fetchPostApiRequest)
         axios.post(`https://jsonplaceholder.typicode.com/posts`,post)
           .then(res => {
               console.log("success", res)
               const post = res.data;
-              dispatch(fetchPostSuccess(post))
+              dispatch(fetchPostApiSuccess(post))
           })
           .catch(err =>{
               console.log("error ", err)
               const error = err;
-              dispatch(fetchPostFail(error))
+              dispatch(fetchPostApiFail(error))
           })
     }
 }

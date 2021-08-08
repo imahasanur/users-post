@@ -4,11 +4,13 @@ import {fetchApiPosts} from '../../redux/actions/getApiActions';
 import Post from '../Post/Post';
 
 const AllPost = ({allPosts, fetchApiPosts}) => {
+
     useEffect(()=>{
         if(allPosts && allPosts.posts.length < 1){
             fetchApiPosts()
         }
     },[])
+
     return allPosts.loading ? (
             <h3>Loading...</h3>
         ): allPosts.err ? (
@@ -17,7 +19,7 @@ const AllPost = ({allPosts, fetchApiPosts}) => {
         <div>
             <div className="row container-fluid p-2  g-3">
                 {
-                    allPosts && allPosts.posts && allPosts.posts.map(post => <Post post={post} ></Post>)
+                    allPosts && allPosts.posts && allPosts.posts.map(post => <Post post={post} key={post.id} ></Post>)
                 }
             </div>
         </div>
@@ -34,7 +36,6 @@ const mapDispatchToProps = dispatch => {
     return{
         fetchApiPosts: ()=> dispatch(fetchApiPosts())
     }
-
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(AllPost);

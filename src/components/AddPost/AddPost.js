@@ -1,24 +1,25 @@
 import React from "react";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 import { fetchPostApi } from "../../redux/actions/postApiActions";
 
 let insertedData;
+
 const AddPost = ({fetchPostApi, insertedPost}) => {
 
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
-        console.log(data);
         insertedData = data;
         fetchPostApi(insertedData)
     }
 
-
     return (
-        <div>
+        <div style={{background: "whitesmoke", minHeight: "700px"}}>
+            <div className="text-center p-2 mb-3">
+                <h5 className="text-decoration-underline">Add Post</h5>
+            </div>
             <div className="d-flex justify-content-center">
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)} style={{border:'2px solid gray',padding:'30px 20px', borderRadius:'5px'}}>
                     <div className="p-2"> 
                         <input {...register("userId")} placeholder="userId" required />
                     </div>
@@ -32,12 +33,11 @@ const AddPost = ({fetchPostApi, insertedPost}) => {
                         <input type="submit" value="Post Now" className="btn btn-success"/>
                     </div>
                 </form>
-
             </div>
+
             <div className="d-flex justify-content-center" style={{color:'green'}}>
                 {
                     insertedPost && insertedPost.post.id && <h5>Successfully inserted post {insertedPost.post.id}</h5>
-
                 }
             </div>
         </div>
@@ -45,9 +45,10 @@ const AddPost = ({fetchPostApi, insertedPost}) => {
 };
 
 const mapStateToProps = (state) =>{
-    console.log("Inserted Data", state.insertedPost.post)
+    state.post.post = {};
+    state.deletedPost.post = {};
     return {
-        insertedPost:state.insertedPost
+        insertedPost: state.insertedPost
     }
 }
 
