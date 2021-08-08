@@ -25,15 +25,15 @@ export const fetchPostsFail = (err) =>{
 
 export const fetchApiPosts = () => {
     return (dispatch) => {
+
         dispatch(fetchPostsRequest)
         axios.get('https://jsonplaceholder.typicode.com/posts')
           .then(res => {
-              console.log("success", res)
               const posts = res.data;
               dispatch(fetchPostsSuccess(posts))
           })
           .catch(err =>{
-              console.log("error ", err)
+              console.log("Error ", err)
               const error = err;
               dispatch(fetchPostsFail(error))
           })

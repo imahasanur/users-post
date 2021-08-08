@@ -16,23 +16,26 @@ export const fetchPostApiSuccess = (post) =>{
         payload:post
     }
 }
+
 export const fetchPostApiFail = (err) =>{
     return {
         type: FETCH_POST_FAIL,
         payload:err
     }
 }
+
 export const fetchPostApi = (post) => {
     return (dispatch) => {
+
         dispatch(fetchPostApiRequest)
         axios.post(`https://jsonplaceholder.typicode.com/posts`,post)
           .then(res => {
-              console.log("success", res)
+              console.log("successfully Posted ", res)
               const post = res.data;
               dispatch(fetchPostApiSuccess(post))
           })
           .catch(err =>{
-              console.log("error ", err)
+              console.log("Error ", err)
               const error = err;
               dispatch(fetchPostApiFail(error))
           })
